@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Mental Health Solution</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-circle" id="theme-toggle">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#" class="nav-link">About us</a>
+                <a href="#" class="nav-link">Platform</a>
+                <a href="#" class="nav-link">Pricing</a>
+                <a href="#" class="nav-link">Resources</a>
+                <a href="#" class="nav-link">Web3.0</a>
+            </div>
+            
+            <button class="login-btn glass-effect">Login</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-left">
+            <!-- Social Proof -->
+            <div class="social-proof glass-effect">
+                <span>We're trusted by millions of users worldwide.</span>
+                <div class="profile-icons">
+                    <div class="profile-icon"></div>
+                    <div class="profile-icon"></div>
+                    <div class="profile-icon"></div>
+                    <div class="profile-icon"></div>
+                </div>
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="headline">
+                <span class="highlight">Technically driven</span>
+                <span class="subtitle">Mental Health Solutions</span>
+                <span class="highlight">with AI</span>
+            </h1>
+
+            <!-- Sub-text -->
+            <p class="sub-text">
+                Streamlines interventions by consolidating them within one platform, reducing the need for multiple point solutions.
+            </p>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <button class="schedule-demo-btn glass-effect">Schedule Demo</button>
+                <button class="play-btn glass-effect">
+                    <i class="fas fa-play"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="content-right">
+            <!-- Abstract Head Graphic -->
+            <div class="abstract-head">
+                <div class="head-silhouette"></div>
+                <div class="color-gradient"></div>
+            </div>
+
+            <!-- Floating UI Cards -->
+            <div class="floating-cards">
+                <!-- Affirmation Card -->
+                <div class="card affirmation-card glass-effect">
+                    <div class="card-header">
+                        <div class="profile-pic">
+                            <img src="./people/profiepicture.jpg" alt="Profile">
+                        </div>
+                        <div class="card-title">
+                            <h3>Today's Affirmation:</h3>
+                            <p>I am proud of how far I've come.</p>
+                        </div>
+                    </div>
+                    <div class="background-text">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+
+                <!-- Feeling Tracker Card -->
+                <div class="card feeling-tracker-card glass-effect">
+                    <h3>How Are You Feeling Today?</h3>
+                    <p>This feeling tracker allows you to analyse your state of mind!</p>
+                    
+                    <div class="emotion-emoji">
+                        <span class="emoji" data-emotion="sad">😢</span>
+                        <span class="emoji" data-emotion="angry">😠</span>
+                        <span class="emoji active" data-emotion="happy">😊</span>
+                        <span class="emoji" data-emotion="laugh">😄</span>
+                        <span class="emoji" data-emotion="lucky">🤩</span>
+                    </div>
+                    
+                    <div class="feeling-slider">
+                        <input type="range" id="feeling-range" min="1" max="5" value="3">
+                        <div class="slider-labels">
+                            <span>Sad</span>
+                            <span>Happy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar and Tasks Card -->
+                <div class="card calendar-tasks-card glass-effect">
+                    <div class="calendar-section">
+                        <div class="calendar-header">
+                            <h4>Aug</h4>
+                            <span>2 Task</span>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="weekdays">
+                                <span>S</span>
+                                <span>M</span>
+                                <span>T</span>
+                                <span>W</span>
+                                <span>T</span>
+                                <span>F</span>
+                                <span>S</span>
+                            </div>
+                            <div class="dates">
+                                <span class="date prev-month">29</span>
+                                <span class="date prev-month">30</span>
+                                <span class="date current-week">1</span>
+                                <span class="date current-week">2</span>
+                                <span class="date current-week">3</span>
+                                <span class="date current-week">4</span>
+                                <span class="date current-week">5</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-section">
+                        <div class="task">
+                            <div class="task-thumbnail meditation"></div>
+                            <span>15 min, Meditation</span>
+                        </div>
+                        <div class="task">
+                            <div class="task-thumbnail breathing"></div>
+                            <span>Take a deep breath - inhale 4s</span>
+                        </div>
+                        <div class="task">
+                            <div class="task-thumbnail grounding"></div>
+                            <span>Feeling anxious? Try grounding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 
