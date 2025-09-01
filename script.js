@@ -217,32 +217,130 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
     
-    // Add current date to calendar
-    function updateCalendar() {
-        const now = new Date();
-        const currentDate = now.getDate();
-        const currentMonth = now.getMonth();
+    // Interactive Calendar Functionality
+    let currentCalendarDate = new Date();
+    let selectedDate = new Date();
+    let isCalendarExpanded = false;
+    
+    function generateCalendar(date, showFullMonth = false) {
+        const year = date.getFullYear();
+        const month = date.getMonth();
         
-        // Update calendar header month
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const startDate = new Date(firstDay);
+        startDate.setDate(startDate.getDate() - firstDay.getDay());
+        
         const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const calendarHeader = document.querySelector('.calendar-header h4');
-        if (calendarHeader) {
-            calendarHeader.textContent = monthNames[currentMonth];
-        }
         
-        // Highlight current date
-        const dates = document.querySelectorAll('.date');
-        dates.forEach(date => {
-            if (parseInt(date.textContent) === currentDate) {
-                date.classList.add('current-date');
-                date.style.background = '#667eea';
-                date.style.color = 'white';
+        // Update header
+        document.getElementById('currentMonth').textContent = monthNames[month];
+        document.getElementById('currentYear').textContent = year;
+        
+        // Generate calendar dates
+        const calendarDates = document.getElementById('calendarDates');
+        calendarDates.innerHTML = '';
+        
+        const today = new Date();
+        const isToday = (date) => {
+            return date.getDate() === today.getDate() && 
+                   date.getMonth() === today.getMonth() && 
+                   date.getFullYear() === today.getFullYear();
+        };
+        
+        const isSelected = (date) => {
+            return date.getDate() === selectedDate.getDate() && 
+                   date.getMonth() === selectedDate.getMonth() && 
+                   date.getFullYear() === selectedDate.getFullYear();
+        };
+        
+        // Determine how many dates to show
+        const totalDates = showFullMonth ? 42 : 7;
+        const startIndex = showFullMonth ? 0 : Math.floor((today.getDate() + startDate.getDay() - 1) / 7) * 7;
+        
+        for (let i = startIndex; i < startIndex + totalDates; i++) {
+            const currentDate = new Date(startDate);
+            currentDate.setDate(startDate.getDate() + i);
+            
+            const dateElement = document.createElement('span');
+            dateElement.className = 'date';
+            dateElement.textContent = currentDate.getDate();
+            
+            // Add appropriate classes
+            if (currentDate.getMonth() !== month) {
+                dateElement.classList.add('prev-month');
+            } else {
+                dateElement.classList.add('current-month');
             }
-        });
+            
+            if (isToday(currentDate)) {
+                dateElement.classList.add('today');
+            }
+            
+            if (isSelected(currentDate)) {
+                dateElement.classList.add('selected');
+            }
+            
+            // Add click event
+            dateElement.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentDate.getMonth() === month) {
+                    selectedDate = new Date(currentDate);
+                    generateCalendar(currentCalendarDate, isCalendarExpanded);
+                }
+            });
+            
+            calendarDates.appendChild(dateElement);
+        }
     }
     
-    // Initialize calendar
-    updateCalendar();
+    // Calendar expand/collapse functionality
+    const calendarCard = document.querySelector('.calendar-tasks-card');
+    const calendarGrid = document.querySelector('.calendar-grid');
+    
+    function expandCalendar() {
+        isCalendarExpanded = true;
+        calendarCard.classList.add('expanded');
+        calendarGrid.classList.remove('collapsed');
+        generateCalendar(currentCalendarDate, true);
+    }
+    
+    function collapseCalendar() {
+        isCalendarExpanded = false;
+        calendarCard.classList.remove('expanded');
+        calendarGrid.classList.add('collapsed');
+        generateCalendar(currentCalendarDate, false);
+    }
+    
+    // Click on calendar card to expand
+    calendarCard.addEventListener('click', (e) => {
+        if (!isCalendarExpanded) {
+            expandCalendar();
+        }
+    });
+    
+    // Click outside to collapse
+    document.addEventListener('click', (e) => {
+        if (isCalendarExpanded && !calendarCard.contains(e.target)) {
+            collapseCalendar();
+        }
+    });
+    
+    // Navigation buttons
+    document.getElementById('prevMonth').addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
+        generateCalendar(currentCalendarDate, isCalendarExpanded);
+    });
+    
+    document.getElementById('nextMonth').addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
+        generateCalendar(currentCalendarDate, isCalendarExpanded);
+    });
+    
+    // Initialize calendar (collapsed by default)
+    collapseCalendar();
     
     // Add some interactive micro-animations
     document.addEventListener('mousemove', function(e) {
