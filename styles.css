@@ -200,20 +200,20 @@ body.dark-mode {
 }
 
 .profile-icon:nth-child(1) {
-    background-image: url('./people/download.jpeg');
+    background-image: url('../people/download.jpeg');
     margin-left: 0;
 }
 
 .profile-icon:nth-child(2) {
-    background-image: url('./people/download (3).jpeg');
+    background-image: url('../people/download (3).jpeg');
 }
 
 .profile-icon:nth-child(3) {
-    background-image: url('./people/download (2).jpeg');
+    background-image: url('../people/download (2).jpeg');
 }
 
 .profile-icon:nth-child(4) {
-    background-image: url('./people/download (1).jpeg');
+    background-image: url('../people/download (1).jpeg');
 }
 
 /* Headline */
