@@ -11,6 +11,8 @@
     --nav-bg: rgba(255, 255, 255, 0.1);
     --logo-gradient-start: #667eea;
     --logo-gradient-end: #764ba2;
+    --github-logo-filter: brightness(0) saturate(100%) invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0.6);
+    --github-logo-hover-filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0);
 }
 
 * {
@@ -39,6 +41,8 @@ body.dark-mode {
     --nav-bg: rgba(0, 0, 0, 0.2);
     --logo-gradient-start: #ffd700;
     --logo-gradient-end: #ff8c00;
+    --github-logo-filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1);
+    --github-logo-hover-filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1.2);
 }
 
 /* Glass Effect Utility */
@@ -129,11 +133,13 @@ body.dark-mode {
     font-weight: 600;
     color: var(--text-primary);
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .login-btn:hover {
     transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--logo-gradient-start) 0%, var(--logo-gradient-end) 100%);
+    color: white;
 }
 
 /* Main Content */
@@ -753,6 +759,39 @@ body.dark-mode {
 .footer-left span:hover,
 .footer-right span:hover {
     color: var(--text-primary);
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.separator {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.github-link:hover {
+    transform: scale(1.1);
+}
+
+.github-logo {
+    width: 20px;
+    height: 20px;
+    filter: var(--github-logo-filter);
+    transition: filter 0.3s ease;
+}
+
+.github-link:hover .github-logo {
+    filter: var(--github-logo-hover-filter);
 }
 
 /* Footer Responsive */
